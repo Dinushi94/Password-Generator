@@ -17,3 +17,5 @@ generate_password(10)
 ![image.png](attachment:621a1bb4-21a5-4626-a995-784ba86b20eb:image.png)
 
 So we need to combine all of these to one strong password
+
+Now we are goin to 
