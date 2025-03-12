@@ -1,40 +1,41 @@
 import random
 import string
 
-def generate_password(min_length, numbers=True, special_characters=True):
-    letters = string.ascii_letters
-    digits = string.digits
-    special = string.punctuation
+def generate_password(length=12, use_uppercase=True, use_digits=True, use_special_chars=True):
+    # Define character sets
+    lowercase_letters = string.ascii_lowercase
+    uppercase_letters = string.ascii_uppercase if use_uppercase else ''
+    digits = string.digits if use_digits else ''
+    special_chars = '!@#$%^&*()_+-=' if use_special_chars else ''
 
-    characters = letters
-    if numbers:
-        characters += digits
-    if special_characters:
-        characters += special
+    # Combine all character sets
+    all_chars = lowercase_letters + uppercase_letters + digits + special_chars
 
-    pwd = ""
-    meets_criteria = False
-    has_number = False
-    has_special = False
+    # Ensure at least one character from each selected set is included
+    password = []
+    if use_uppercase:
+        password.append(random.choice(uppercase_letters))
+    if use_digits:
+        password.append(random.choice(digits))
+    if use_special_chars:
+        password.append(random.choice(special_chars))
 
-    while not meets_criteria or len(pwd) < min_length:
-        new_char = random.choice(characters)
-        pwd += new_char
+    # Fill the rest of the password with random characters
+    remaining_length = length - len(password)
+    password.extend(random.choice(all_chars) for _ in range(remaining_length))
 
-        if new_char in digits:
-            has_number = True
-        elif new_char in special:
-            has_special = True
+    # Shuffle the password to ensure randomness
+    random.shuffle(password)
 
-        meets_criteria = True
-        if numbers:
-            meets_criteria = has_number
-        if special_characters:
-            meets_criteria = meets_criteria and has_special 
+    # Convert the list to a string
+    return ''.join(password)
 
-    return pwd        
+# Example usage
+if __name__ == "__main__":
+    length = int(input("Enter password length: "))
+    use_uppercase = input("Include uppercase letters? (y/n): ").lower() == 'y'
+    use_digits = input("Include digits? (y/n): ").lower() == 'y'
+    use_special_chars = input("Include special characters? (y/n): ").lower() == 'y'
 
-
-
-generate_password(10)    
-print(pwd)
+    password = generate_password(length, use_uppercase, use_digits, use_special_chars)
+    print(f"Generated Password: {password}")
