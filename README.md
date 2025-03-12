@@ -19,4 +19,10 @@ generate_password(10)
 
 So we need to combine all of these to one strong password
 
-Now we are goin to 
+You will need to install the cryptography package, which is used for encrypting and securely storing your passwords. This is specified in the requirements.txt file I provided.
+To install this package, you'll need to run:
+Copypip install cryptography
+Or as mentioned in the instructions:
+Copypip install -r requirements.txt
+
+and create a file called password storage to store pawd

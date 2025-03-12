@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Password data files (never commit these to GitHub)
+*.enc
+passwords.enc
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+.DS_Store
